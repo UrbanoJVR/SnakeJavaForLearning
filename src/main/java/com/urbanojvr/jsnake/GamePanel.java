@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {
 
@@ -20,6 +21,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private BodyPart bodyPart;
     private ArrayList<BodyPart> snake;
+    private Apple apple;
+    private ArrayList<Apple> apples;
+
+    private Random r;
 
     private int xCoor = 10, yCoor = 10, size = 5;
 
@@ -32,6 +37,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         addKeyListener(this);
 
         snake = new ArrayList<BodyPart>();
+        apples = new ArrayList<Apple>();
+
+        r = new Random();
 
         start();
     }
@@ -76,6 +84,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             if(snake.size() > size){
                 snake.remove(0);
             }
+
+            if(apples.isEmpty()){
+                int x = r.nextInt(49);
+                int y = r.nextInt(49);
+
+                Apple apple = new Apple(x, y, 10);
+                apples.add(apple);
+            }
         }
     }
 
@@ -96,7 +112,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         for(int i = 0; i < snake.size(); i++){
             snake.get(i).draw(graphics);
         }
-
+        for (Apple apple : apples) {
+            apple.draw(graphics);
+        }
     }
 
     public void run() {
