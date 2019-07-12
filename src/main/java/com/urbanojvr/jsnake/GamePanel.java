@@ -21,8 +21,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private BodyPart bodyPart;
     private ArrayList<BodyPart> snake;
-    private Apple apple;
-    private ArrayList<Apple> apples;
+    private Apple apple = null;
 
     private Random r;
 
@@ -37,7 +36,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         addKeyListener(this);
 
         snake = new ArrayList<BodyPart>();
-        apples = new ArrayList<Apple>();
 
         r = new Random();
 
@@ -85,12 +83,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
                 snake.remove(0);
             }
 
-            if(apples.isEmpty()){
+            if(apple == null){
                 int x = r.nextInt(49);
                 int y = r.nextInt(49);
 
-                Apple apple = new Apple(x, y, 10);
-                apples.add(apple);
+                apple = new Apple(x, y, 10);
             }
         }
     }
@@ -112,9 +109,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         for(int i = 0; i < snake.size(); i++){
             snake.get(i).draw(graphics);
         }
-        for (Apple apple : apples) {
-            apple.draw(graphics);
-        }
+
+        if(apple != null) apple.draw(graphics);
     }
 
     public void run() {
