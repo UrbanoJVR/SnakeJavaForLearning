@@ -16,7 +16,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Thread thread;
     private boolean running;
 
-    private boolean rigth = true, left = false, up = false, down = false;
+    private Direction direction = Direction.RIGHT;
 
     private BodyPart bodyPart;
     private ArrayList<BodyPart> snake;
@@ -54,10 +54,19 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         }
         ticks++;
         if(ticks > 2500000){
-            if(rigth) xCoor++;
-            if(left) xCoor--;
-            if(up) yCoor--;
-            if(down) yCoor++;
+            switch (direction){
+                case RIGHT:
+                    xCoor ++;
+                    break;
+                case LEFT:
+                    xCoor --;
+                    break;
+                case UP:
+                    yCoor --;
+                    break;
+                case DOWN:
+                    yCoor ++;
+            }
 
             ticks = 0;
 
@@ -108,29 +117,20 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
         int key = e.getKeyCode();
 
-        if(key == KeyEvent.VK_RIGHT && !left){
-            rigth = true;
-            up = false;
-            down = false;
+        if(key == KeyEvent.VK_RIGHT && direction != Direction.LEFT){
+            direction = Direction.RIGHT;
         }
 
-        if(key == KeyEvent.VK_LEFT && !rigth){
-            left = true;
-            up = false;
-            down = false;
+        if(key == KeyEvent.VK_LEFT && direction != Direction.RIGHT){
+            direction = Direction.LEFT;
         }
 
-        if(key == KeyEvent.VK_UP && !up){
-            up = true;
-            rigth = false;
-            left = false;
+        if(key == KeyEvent.VK_UP && direction != Direction.DOWN){
+            direction = Direction.UP;
         }
 
-        if(key == KeyEvent.VK_DOWN && !down){
-            down = true;
-            rigth = false;
-            left = false;
-
+        if(key == KeyEvent.VK_DOWN && direction != Direction.UP){
+            direction = Direction.DOWN;
         }
 
     }
