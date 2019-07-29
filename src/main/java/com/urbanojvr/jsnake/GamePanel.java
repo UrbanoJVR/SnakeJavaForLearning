@@ -89,6 +89,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
                 apple = new Apple(x, y, 10);
             }
+
+            if(apple.getxCoor() == this.xCoor && apple.getyCoor() == this.yCoor){
+                size ++;
+                apple = null;
+            }
         }
     }
 
@@ -106,8 +111,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             graphics.drawLine(0, i * 10, HEIGHT, i * 10);
         }
 
-        for(int i = 0; i < snake.size(); i++){
-            snake.get(i).draw(graphics);
+        for (BodyPart part : snake) {
+            part.draw(graphics);
         }
 
         if(apple != null) apple.draw(graphics);
