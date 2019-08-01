@@ -79,7 +79,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
                     yCoor ++;
             }
 
-            if(checkCollision()){
+            if(checkCollision() || checkEatItself()){
                 gameOver();
             }
 
@@ -135,6 +135,15 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         }
 
         return collision;
+    }
+
+    private boolean checkEatItself(){
+        for(BodyPart part : snake){
+            if(part.getxCoor() == xCoor && part.getyCoor() == yCoor){
+                return true;
+            }
+        }
+        return false;
     }
 
     private void gameOver(){
