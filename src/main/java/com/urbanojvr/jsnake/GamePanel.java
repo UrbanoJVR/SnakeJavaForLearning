@@ -23,7 +23,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private ArrayList<BodyPart> snake;
     private Apple apple = null;
 
-    private Random r;
+    private Random random;
 
     private int xCoor = 10, yCoor = 10, size = 5;
 
@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
         snake = new ArrayList<BodyPart>();
 
-        r = new Random();
+        random = new Random();
 
         start();
     }
@@ -84,8 +84,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             }
 
             if(apple == null){
-                int x = r.nextInt(49);
-                int y = r.nextInt(49);
+                int x = random.nextInt(49);
+                int y = random.nextInt(49);
 
                 apple = new Apple(x, y, 10);
             }
