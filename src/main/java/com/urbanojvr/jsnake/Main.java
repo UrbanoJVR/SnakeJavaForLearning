@@ -5,7 +5,6 @@ package com.urbanojvr.jsnake;
 //https://github.com/GrenderG/JSnake/blob/master/src/net/moralesblog/GamePanel.java
 //https://www.learnjavacoding.com/definitions/snake/
 //A futuro buscar LibGDX
-
 //Buena reestructuración https://codereview.stackexchange.com/questions/129719/java-snake-game
 
 import javax.swing.*;
