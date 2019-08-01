@@ -13,6 +13,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     public static final int WIDTH = 500;
     public static final int HEIGHT = 500;
+    public static final int DEFAULT_XCOOR = 0;
+    public static final int DEFAULT_YCOOR = 25;
+    public static final int DEFAULT_SNAKE_SIZE = 5;
 
     private Thread thread;
     private boolean running;
@@ -25,7 +28,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private Random random;
 
-    private int xCoor = 10, yCoor = 10, size = 5;
+    private int xCoor = DEFAULT_XCOOR;
+    private int yCoor = DEFAULT_YCOOR;
+    private int size = DEFAULT_SNAKE_SIZE;
 
     private int ticks = 0;
 
@@ -74,6 +79,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
                     yCoor ++;
             }
 
+            if(checkCollision()){
+                gameOver();
+            }
+
             ticks = 0;
 
             bodyPart = new BodyPart(xCoor, yCoor, 10);
@@ -116,6 +125,25 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         }
 
         if(apple != null) apple.draw(graphics);
+    }
+
+    private boolean checkCollision() {
+        boolean collision = false;
+
+        if(xCoor > 49 || xCoor < 0 || yCoor > 49 || yCoor < 0){
+            collision = true;
+        }
+
+        return collision;
+    }
+
+    private void gameOver(){
+        direction = Direction.RIGHT;
+        snake = new ArrayList<BodyPart>();
+        apple = null;
+        xCoor = DEFAULT_XCOOR;
+        yCoor = DEFAULT_YCOOR;
+        size = DEFAULT_SNAKE_SIZE;
     }
 
     public void run() {
