@@ -11,16 +11,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private static final long serialVersionUID = 1L;
 
-    public static final int WIDTH = 500;
-    public static final int HEIGHT = 500;
-    public static final int DEFAULT_XCOOR = 0;
-    public static final int DEFAULT_YCOOR = 25;
-    public static final int DEFAULT_SNAKE_SIZE = 5;
-
     private Thread thread;
     private boolean running;
 
-    private Direction direction = Direction.RIGHT;
+    private Direction direction = Constants.DEFAULT_DIRECTION;
 
     private BodyPart bodyPart;
     private ArrayList<BodyPart> snake;
@@ -28,16 +22,16 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private Random random;
 
-    private int xCoor = DEFAULT_XCOOR;
-    private int yCoor = DEFAULT_YCOOR;
-    private int size = DEFAULT_SNAKE_SIZE;
+    private int xCoor = Constants.DEFAULT_XCOOR;
+    private int yCoor = Constants.DEFAULT_YCOOR;
+    private int size = Constants.DEFAULT_SNAKE_SIZE;
 
     private int ticks = 0;
 
     public GamePanel() {
         setFocusable(true);
 
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setPreferredSize(new Dimension(Constants.DEFAULT_PANEL_WIDTH, Constants.DEFAULT_PANEL_HEIGHT));
         addKeyListener(this);
 
         snake = new ArrayList<BodyPart>();
@@ -93,8 +87,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             }
 
             if(apple == null){
-                int x = random.nextInt(49);
-                int y = random.nextInt(49);
+                int x = random.nextInt(Constants.DEFAULT_MAX_SQUARE_SIDE);
+                int y = random.nextInt(Constants.DEFAULT_MAX_SQUARE_SIDE);
 
                 apple = new Apple(x, y, 10);
             }
@@ -107,17 +101,17 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     public void paint(Graphics graphics) {
-        graphics.clearRect(0, 0, WIDTH, HEIGHT);
+        graphics.clearRect(0, 0, Constants.DEFAULT_PANEL_WIDTH, Constants.DEFAULT_PANEL_HEIGHT);
 
         graphics.setColor(Color.BLACK);
-        graphics.fillRect(0, 0, WIDTH, HEIGHT);
+        graphics.fillRect(0, 0, Constants.DEFAULT_PANEL_WIDTH, Constants.DEFAULT_PANEL_HEIGHT);
 
         for (int i = 0; i < WIDTH / 10; i++) {
-            graphics.drawLine(i * 10, 0, i * 10, HEIGHT);
+            graphics.drawLine(i * 10, 0, i * 10, Constants.DEFAULT_PANEL_HEIGHT);
         }
 
         for (int i = 0; i < HEIGHT / 10; i++) {
-            graphics.drawLine(0, i * 10, HEIGHT, i * 10);
+            graphics.drawLine(0, i * 10, Constants.DEFAULT_PANEL_HEIGHT, i * 10);
         }
 
         for (BodyPart part : snake) {
@@ -130,7 +124,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private boolean checkCollision() {
         boolean collision = false;
 
-        if(xCoor > 49 || xCoor < 0 || yCoor > 49 || yCoor < 0){
+        if(xCoor > Constants.DEFAULT_MAX_SQUARE_SIDE || xCoor < 0 || yCoor > Constants.DEFAULT_MAX_SQUARE_SIDE || yCoor < 0){
             collision = true;
         }
 
@@ -150,9 +144,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         direction = Direction.RIGHT;
         snake = new ArrayList<BodyPart>();
         apple = null;
-        xCoor = DEFAULT_XCOOR;
-        yCoor = DEFAULT_YCOOR;
-        size = DEFAULT_SNAKE_SIZE;
+        xCoor = Constants.DEFAULT_XCOOR;
+        yCoor = Constants.DEFAULT_YCOOR;
+        size = Constants.DEFAULT_SNAKE_SIZE;
     }
 
     public void run() {
