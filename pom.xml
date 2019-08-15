@@ -13,15 +13,22 @@
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>1.5.6</version>
-
+                <version>1.5.3</version>
                 <executions>
                     <execution>
-                        <id>output-html</id>
+                        <id>generate-docs</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>process-asciidoc</goal>
                         </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <doctype>book</doctype>
+                            <sourceDocumentExtensions>adoc</sourceDocumentExtensions>
+                            <attributes>
+                                <icons>font</icons>
+                            </attributes>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
