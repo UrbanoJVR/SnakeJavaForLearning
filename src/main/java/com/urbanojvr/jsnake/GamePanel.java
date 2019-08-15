@@ -141,7 +141,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     private void gameOver(){
-        direction = Direction.RIGHT;
+        direction = Constants.DEFAULT_DIRECTION;
         snake = new ArrayList<BodyPart>();
         apple = null;
         xCoor = Constants.DEFAULT_XCOOR;
