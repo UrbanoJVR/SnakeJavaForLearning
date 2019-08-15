@@ -1,0 +1,53 @@
+= Jsnake, el juego de la serpiente para aprender
+Urbano Villanueva <u.villanueva95@gmail.com>
+2017-01-01
+:revnumber: {project-version}
+:example-caption!:
+ifndef::imagesdir[:imagesdir: images]
+ifndef::sourcedir[:sourcedir: ../java]
+:icons: font
+:listing-caption:
+:sectnums:
+:toc:
+:toclevels: 3
+:footer-text: Mis memorias
+:media: prepress
+:chapter-label:
+
+
+[abstract]
+Aqui deberías poner un par de frases que resuman la intención del documento
+
+{sp} +
+{sp} +
+{sp} +
+{sp} +
+{sp} +
+{sp} +
+
+[verse]
+Aqui puedes poner una dedicatoria
+
+{sp} +
+{sp} +
+{sp} +
+
+[quote,Oscar Wilde,1854-1900]
+"No existe una mejor prueba del progreso de la civilización que la del progreso de la cooperación."
+
+
+{sp} +
+{sp} +
+{sp} +
+{sp} +
+{sp} +
+{sp} +
+{sp} +
+{sp} +
+{sp} +
+
+<<<<
+
+== Introducción
+
+Empieza aqui a escribir algo que sirva como introduccion
